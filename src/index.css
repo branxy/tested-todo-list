@@ -76,6 +76,10 @@ ul {
   padding: 0;
 }
 
+li:not(:first-child) {
+  margin-top: 4px;
+}
+
 input[type="checkbox"] {
   border-color: rgb(225, 225, 225);
 }

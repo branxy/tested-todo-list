@@ -21,6 +21,7 @@ input[type="checkbox"] {
   border: 1px solid rgb(43, 43, 43);
   border-radius: 50%;
   appearance: none;
+  flex-shrink: 0;
 }
 
 input[type="checkbox"]:checked {

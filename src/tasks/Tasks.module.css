@@ -22,7 +22,11 @@
   font-size: 18px;
 }
 
-.tasksList {
+.tasksActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
 }
 
 .taskItem {
@@ -33,12 +37,6 @@
 
 .taskItem span {
   padding-bottom: 4px;
-}
-
-.tasksFooter {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .taskTabs {
