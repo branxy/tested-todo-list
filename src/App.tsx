@@ -3,10 +3,10 @@ import TaskApp from "./tasks/TaskApp";
 
 function App() {
   return (
-    <div className="App">
+    <main className="App">
       <h1>Tasks</h1>
       <TaskApp />
-    </div>
+    </main>
   );
 }
 
