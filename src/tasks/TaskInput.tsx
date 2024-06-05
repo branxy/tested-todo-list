@@ -21,8 +21,10 @@ function TaskInput({ dispatch }: { dispatch: React.Dispatch<Action> }) {
         name="task-title"
         id="task-input"
         placeholder="New task name"
+        minLength={1}
         maxLength={100}
         autoFocus
+        required
         className={s.newTaskInput}
       />
     </form>
