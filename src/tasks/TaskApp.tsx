@@ -1,9 +1,12 @@
 import TaskInput from "./TaskInput";
-import s from "./Tasks.module.css";
-import { useLocalStorage } from "../lib/hooks";
+import TasksActions from "./TasksActions";
 import TaskItem from "./TaskItem";
-import TasksFooter from "./TasksFooter";
-import { useState } from "react";
+
+import { useLocalStorage } from "../lib/hooks";
+import { useMemo, useState } from "react";
+import { filterTasks } from "../lib/functions";
+
+import s from "./Tasks.module.css";
 
 export type Tabs = "all" | "active" | "completed";
 
@@ -14,22 +17,24 @@ function TaskApp() {
 
   const hasTasks = Boolean(tasks.length);
 
+  const filteredTasks = useMemo(() => filterTasks(tasks, tab), [tasks, tab]);
+
   return (
     <div className={s.taskApp}>
       <TaskInput dispatch={dispatch} />
-      <ul className={s.taskslist}>
-        {tasks.map((t, i) => (
-          <TaskItem key={i} task={t} dispatch={dispatch} />
-        ))}
-      </ul>
       {hasTasks && (
-        <TasksFooter
-          tasks={tasks}
+        <TasksActions
+          tasks={filteredTasks}
           dispatch={dispatch}
           tab={tab}
           setTab={setTab}
         />
       )}
+      <ul className={s.taskslist}>
+        {filteredTasks.map((t, i) => (
+          <TaskItem key={i} task={t} dispatch={dispatch} />
+        ))}
+      </ul>
     </div>
   );
 }
