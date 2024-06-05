@@ -1,4 +1,7 @@
+import { v4 as uuidv4 } from "uuid";
+
 export interface Task {
+  id: string;
   title: string;
   done: boolean;
 }
@@ -15,10 +18,11 @@ export function tasksReducer(tasks: Tasks, action: Action): Tasks {
     case "tasks/taskAdded":
       {
         const newTask: Task = {
+          id: uuidv4(),
           title: action.payload,
           done: false,
         };
-        console.log("added new task:", [...tasks, newTask]);
+
         return [...tasks, newTask];
       }
 
