@@ -1,14 +1,22 @@
-import type { Task } from "./tasksReducer";
+import type { Action, Task } from "./tasksReducer";
 import s from "./Tasks.module.css";
 
-function TaskItem({ task }: { task: Task }) {
+interface TaskItemProps {
+  task: Task;
+  dispatch: React.Dispatch<Action>;
+}
+
+function TaskItem({ task, dispatch }: TaskItemProps) {
   return (
     <li className={s.taskItem}>
       <input
         type="checkbox"
         name="task-status"
         id="task-status"
-        defaultChecked={task.done}
+        checked={task.done}
+        onChange={() =>
+          dispatch({ type: "tasks/taskStatusChanged", payload: task.id })
+        }
       />
       <span>{task.done ? <s>{task.title}</s> : task.title}</span>
     </li>

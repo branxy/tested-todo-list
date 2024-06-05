@@ -1,3 +1,9 @@
+.taskApp {
+  width: 540px;
+  display: flex;
+  flex-direction: column;
+}
+
 .screenreader {
   position: absolute;
   width: 1px;
@@ -11,6 +17,7 @@
 }
 
 .newTaskInput {
+  width: 100%;
   padding: 4px 4px;
   font-size: 18px;
 }
@@ -26,4 +33,24 @@
 
 .taskItem span {
   padding-bottom: 4px;
+}
+
+.tasksFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.taskTabs {
+  display: flex;
+  gap: 6px;
+}
+
+.activeTab,
+.activeTab:hover,
+.activeTab:focus,
+.activeTab:focus-visible {
+  border: none;
+  color: #646cff;
+  outline: none;
 }

@@ -5,6 +5,16 @@
   align-items: center;
 }
 
+button.primary {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+button.secondary {
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
 input[type="checkbox"] {
   width: 26px;
   height: 26px;
@@ -29,4 +39,8 @@ input[type="checkbox"]:checked::after {
   top: -1px;
   color: #77c0a0;
   background-color: transparent;
+}
+
+s {
+  color: rgb(156, 156, 156);
 }
