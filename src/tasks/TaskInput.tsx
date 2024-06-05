@@ -1,12 +1,13 @@
 import s from "./TasksList.module.css";
+import { Action } from "./tasksReducer";
 
-function TaskInput() {
+function TaskInput({ dispatch }: { dispatch: React.Dispatch<Action> }) {
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
-    const newTaskTitle = form.get("task-title");
+    const newTaskTitle = form.get("task-title") as string;
 
-    // dispatch
+    dispatch({ type: "tasks/taskAdded", payload: newTaskTitle });
   }
 
   return (
