@@ -2,38 +2,20 @@ import { useMemo } from "react";
 import s from "./Tasks.module.css";
 import { Action, Tasks } from "./tasksReducer";
 import { Tabs } from "./TaskApp";
+import { getTasksStatistics } from "../lib/functions";
 
-interface TasksFooterProps {
+interface TasksActionsProps {
   tasks: Tasks;
   dispatch: React.Dispatch<Action>;
   tab: Tabs;
   setTab: React.Dispatch<React.SetStateAction<Tabs>>;
 }
 
-interface Statistics {
-  completed: string[];
-  uncompleted: number;
-}
-
-function TasksFooter({ tasks, dispatch, tab, setTab }: TasksFooterProps) {
-  const { completed, uncompleted } = useMemo(() => {
-    const statsBaseObject: Statistics = {
-      completed: [],
-      uncompleted: 0,
-    };
-
-    const count = tasks.reduce((result, t) => {
-      if (t.done) {
-        result.completed.push(t.id);
-      } else {
-        result.uncompleted++;
-      }
-
-      return result;
-    }, statsBaseObject);
-
-    return count;
-  }, [tasks]);
+function TasksActions({ tasks, dispatch, tab, setTab }: TasksActionsProps) {
+  const { completed, uncompleted } = useMemo(
+    () => getTasksStatistics(tasks),
+    [tasks]
+  );
 
   const itemsLeft =
     uncompleted === 1
@@ -49,9 +31,14 @@ function TasksFooter({ tasks, dispatch, tab, setTab }: TasksFooterProps) {
   const completedTabStatus = tab === "completed" && s.activeTab;
 
   return (
-    <div className={s.tasksFooter}>
+    <div className={s.tasksActions}>
       <span>{itemsLeft}</span>
-      <div className={s.taskTabs}>
+      <div
+        className={s.taskTabs}
+        dir="ltr"
+        role="tablist"
+        aria-label="Switch tasks tabs by status"
+      >
         <button
           disabled={tab === "all"}
           className={`secondary ${allTabStatus}`}
@@ -87,4 +74,4 @@ function TasksFooter({ tasks, dispatch, tab, setTab }: TasksFooterProps) {
   );
 }
 
-export default TasksFooter;
+export default TasksActions;
