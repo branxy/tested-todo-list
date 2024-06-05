@@ -13,7 +13,6 @@ export type Tabs = "all" | "active" | "completed";
 function TaskApp() {
   const [tasks, dispatch] = useLocalStorage("tasks", []);
   const [tab, setTab] = useState<Tabs>("all");
-  console.log({ tasks, dispatch });
 
   const hasTasks = Boolean(tasks.length);
 
