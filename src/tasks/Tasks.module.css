@@ -14,3 +14,16 @@
   padding: 4px 4px;
   font-size: 18px;
 }
+
+.tasksList {
+}
+
+.taskItem {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.taskItem span {
+  padding-bottom: 4px;
+}

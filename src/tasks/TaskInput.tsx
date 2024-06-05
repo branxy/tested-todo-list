@@ -1,4 +1,4 @@
-import s from "./TasksList.module.css";
+import s from "./Tasks.module.css";
 import { Action } from "./tasksReducer";
 
 function TaskInput({ dispatch }: { dispatch: React.Dispatch<Action> }) {
@@ -8,6 +8,7 @@ function TaskInput({ dispatch }: { dispatch: React.Dispatch<Action> }) {
     const newTaskTitle = form.get("task-title") as string;
 
     dispatch({ type: "tasks/taskAdded", payload: newTaskTitle });
+    e.currentTarget.reset();
   }
 
   return (

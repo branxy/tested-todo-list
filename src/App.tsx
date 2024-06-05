@@ -1,11 +1,11 @@
 import "./App.css";
-import TasksList from "./tasks/TasksList";
+import TaskApp from "./tasks/TaskApp";
 
 function App() {
   return (
     <div className="App">
       <h1>Tasks</h1>
-      <TasksList />
+      <TaskApp />
     </div>
   );
 }
