@@ -1,13 +1,32 @@
-import TaskInput from "../src/tasks/TaskInput";
+import "@testing-library/jest-dom/vitest";
+import { fireEvent, render, screen } from "@testing-library/react";
+import TaskApp from "../src/tasks/TaskApp";
 
-import { render, screen } from "@testing-library/react";
-import {} from "@testing-library/jest-dom/vitest";
+describe("Creating a new task with TaskInput", () => {
+  const renderTaskApp = () => {
+    render(<TaskApp />);
 
-describe("TaskInput", () => {
+    return {
+      form: screen.getByRole("form"),
+      input: screen.getByPlaceholderText("New task name"),
+    };
+  };
+
   it("should render a form for creating a new task", () => {
-    render(<TaskInput dispatch={() => {}} />);
+    const { form, input } = renderTaskApp();
 
-    const form = screen.getByRole("form");
     expect(form).toBeInTheDocument();
+    expect(input).toBeInTheDocument();
+  });
+
+  it("should add a new task when form is submitted", async () => {
+    const { form, input } = renderTaskApp();
+
+    fireEvent.change(input, { target: { value: "New Task" } });
+    fireEvent.submit(form);
+
+    const newTask = screen.queryByText("New Task");
+    expect(input).toHaveValue("");
+    expect(newTask).toBeInTheDocument();
   });
 });
