@@ -22,6 +22,7 @@ function TaskApp() {
   return (
     <div className={s.taskApp}>
       <TaskInput dispatch={dispatch} />
+      {!hasTasks && <p>No tasks yet</p>}
       {hasTasks && (
         <TasksActions
           tasks={filteredTasks}
