@@ -1,10 +1,10 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import TasksActions from "../src/tasks/TasksActions";
-import { Tasks } from "../src/tasks/tasksReducer";
+import { Action, Tasks } from "../src/tasks/tasksReducer";
 import { Tabs } from "../src/tasks/TaskApp";
 
 describe("Task actions: core functionality", () => {
@@ -20,33 +20,82 @@ describe("Task actions: core functionality", () => {
       done: true,
     },
   ];
+
+  const dispatch = vi.fn() as React.Dispatch<Action>;
+  const setTab = vi.fn() as React.Dispatch<React.SetStateAction<Tabs>>;
+
   const renderTaskActions = (tasks: Tasks, tab: Tabs) => {
     render(
       <TasksActions
         tasks={tasks}
-        dispatch={() => {}}
+        dispatch={dispatch}
         tab={tab}
-        setTab={() => {}}
+        setTab={setTab}
       />
     );
 
     return {
-      tasksCount: screen.getAllByText(/left/i),
+      tasksCount: screen.getByText(/left/i),
       filters: {
-        all: screen.getAllByText("All"),
-        active: screen.getAllByText("Active"),
-        completed: screen.getAllByText("Completed"),
+        all: screen.getByText("All"),
+        active: screen.getByText("Active"),
+        completed: screen.getByText("Completed"),
       },
-      deleteTasksBtn: screen.getAllByText("Clear completed"),
+      deleteTasksBtn: screen.getByText("Clear completed"),
     };
   };
 
-  it("should display a count of uncompleted tasks", () => {
-    const tabs: Tabs[] = ["all", "active", "completed"];
+  it(`All tasks tab: should display a count of uncompleted tasks`, () => {
+    const { tasksCount } = renderTaskActions(exampleTasks, "all");
+    expect(tasksCount).toBeInTheDocument();
+  });
 
-    tabs.forEach((tab) => {
-      const { tasksCount } = renderTaskActions(exampleTasks, tab);
-      expect(tasksCount.length).toBeTruthy();
+  it(`Active tasks tab: should display a count of uncompleted tasks`, () => {
+    const { tasksCount } = renderTaskActions(exampleTasks, "active");
+    expect(tasksCount).toBeInTheDocument();
+  });
+
+  it(`Completed tasks tab: should display a count of uncompleted tasks`, () => {
+    const { tasksCount } = renderTaskActions(exampleTasks, "all");
+    expect(tasksCount).toBeInTheDocument();
+  });
+
+  it(`All tasks tab: click on "Active" tab calls setTab with the right value`, () => {
+    const {
+      filters: { active },
+    } = renderTaskActions(exampleTasks, "all");
+
+    fireEvent.click(active);
+    expect(setTab).toBeCalledWith("active");
+  });
+
+  it(`Active tasks tab: click on "Completed" tab calls setTab with the right value`, () => {
+    const {
+      filters: { completed },
+    } = renderTaskActions(exampleTasks, "all");
+
+    fireEvent.click(completed);
+    expect(setTab).toBeCalledWith("active");
+  });
+
+  it(`Completed tasks tab: click on "All" tab calls setTab with the right value`, () => {
+    const {
+      filters: { all },
+    } = renderTaskActions(exampleTasks, "all");
+
+    fireEvent.click(all);
+    expect(setTab).toBeCalledWith("active");
+  });
+
+  it(`Clear tasks btn: should call "dispatch" with the right action`, () => {
+    const { deleteTasksBtn } = renderTaskActions(exampleTasks, "all");
+
+    const doneTasksIds = exampleTasks.filter((t) => t.done).map((t) => t.id);
+
+    fireEvent.click(deleteTasksBtn);
+    expect(dispatch).toBeCalledWith({
+      type: "tasks/tasksDeleted",
+      payload: doneTasksIds,
     });
   });
 });
