@@ -5,6 +5,18 @@
   align-items: center;
 }
 
+.screenreader {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 button.primary {
   font-size: 1em;
   font-weight: 500;
@@ -28,7 +40,6 @@ input[type="checkbox"] {
 input[type="checkbox"]:checked {
   clip-path: circle(50% at 50% 50%);
   appearance: none;
-  color: rgb(238, 35, 35);
   accent-color: rgb(250, 250, 250);
   position: relative;
 }

@@ -40,3 +40,30 @@
   color: #646cff;
   outline: none;
 }
+
+@media screen and (max-width: 768px) {
+  .taskApp {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 520px) {
+  .tasksActions {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .taskTabs {
+    font-size: 1.2rem;
+  }
+
+  .taskItem > input[type="checkbox"] {
+    width: 30px;
+    height: 30px;
+  }
+
+  .taskItem input[type="checkbox"]:checked::after {
+    top: 2px;
+    right: 7px;
+  }
+}

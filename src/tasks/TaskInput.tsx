@@ -14,7 +14,7 @@ function TaskInput({ dispatch }: { dispatch: React.Dispatch<Action> }) {
 
   return (
     <form action="" onSubmit={handleFormSubmit}>
-      <label htmlFor="task-input" className={s.screenreader}>
+      <label htmlFor="task-input" className="screenreader">
         New task name:
       </label>
       <input
