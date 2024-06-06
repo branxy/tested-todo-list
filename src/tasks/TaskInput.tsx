@@ -1,5 +1,6 @@
-import s from "./Tasks.module.css";
 import { Action } from "./tasksReducer";
+
+import s from "./Tasks.module.css";
 
 function TaskInput({ dispatch }: { dispatch: React.Dispatch<Action> }) {
   function handleFormSubmit(e: React.FormEvent<HTMLFormElement>) {

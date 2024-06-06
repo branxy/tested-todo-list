@@ -1,5 +1,5 @@
-import { Tabs } from "../tasks/TaskApp";
-import { Tasks } from "../tasks/tasksReducer";
+import { type Tabs } from "../tasks/TaskApp";
+import { type Tasks } from "../tasks/tasksReducer";
 
 export function filterTasks(tasks: Tasks, tab: Tabs) {
   switch (tab) {

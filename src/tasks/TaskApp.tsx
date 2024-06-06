@@ -2,9 +2,10 @@ import TaskInput from "./TaskInput";
 import TasksActions from "./TasksActions";
 import TaskItem from "./TaskItem";
 
+import { filterTasks } from "../lib/functions";
+
 import { useLocalStorage } from "../lib/hooks";
 import { useMemo, useState } from "react";
-import { filterTasks } from "../lib/functions";
 
 import s from "./Tasks.module.css";
 

@@ -1,8 +1,11 @@
-import { useMemo } from "react";
-import s from "./Tasks.module.css";
-import { Action, Tasks } from "./tasksReducer";
-import { Tabs } from "./TaskApp";
 import { getTasksStatistics } from "../lib/functions";
+
+import { useMemo } from "react";
+
+import { type Action, type Tasks } from "./tasksReducer";
+import { type Tabs } from "./TaskApp";
+
+import s from "./Tasks.module.css";
 
 interface TasksActionsProps {
   tasks: Tasks;
