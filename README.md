@@ -43,3 +43,17 @@ npm start
 npm run start
 npm run dev
 ```
+
+5. Запуск тестов:
+
+- В отдельной вкладке браузера:
+
+```
+npm run test:ui
+```
+
+- Только в терминале:
+
+```
+npm test
+```
