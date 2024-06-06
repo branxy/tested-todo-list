@@ -19,14 +19,14 @@ describe("Creating a new task with TaskInput", () => {
     expect(input).toBeInTheDocument();
   });
 
-  it("should add a new task when form is submitted", async () => {
+  it("when form is submitted, form value is reset and new task is displayed", async () => {
     const { form, input } = renderTaskApp();
 
     fireEvent.change(input, { target: { value: "New Task" } });
     fireEvent.submit(form);
+    expect(input).toHaveValue("");
 
     const newTask = screen.queryByText("New Task");
-    expect(input).toHaveValue("");
     expect(newTask).toBeInTheDocument();
   });
 });
