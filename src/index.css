@@ -84,7 +84,9 @@ input[type="checkbox"] {
   border-color: rgb(225, 225, 225);
 }
 
-
+fieldset {
+  border: none;
+}
 
 @media (prefers-color-scheme: light) {
   :root {

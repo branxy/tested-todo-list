@@ -37,9 +37,9 @@ describe("Task actions: core functionality", () => {
     return {
       tasksCount: screen.getByText(/left/i),
       filters: {
-        all: screen.getByText("All"),
-        active: screen.getByText("Active"),
-        completed: screen.getByText("Completed"),
+        all: screen.getByRole("radio", { name: /all/i }),
+        active: screen.getByRole("radio", { name: /active/i }),
+        completed: screen.getByRole("radio", { name: /completed/i }),
       },
       deleteTasksBtn: screen.getByText("Clear completed"),
     };
