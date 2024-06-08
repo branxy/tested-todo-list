@@ -71,6 +71,10 @@ button:disabled:hover {
   cursor: not-allowed;
 }
 
+input + label {
+  background-color: #1a1a1a;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
@@ -84,7 +88,9 @@ input[type="checkbox"] {
   border-color: rgb(225, 225, 225);
 }
 
-
+fieldset {
+  border: none;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -97,6 +103,11 @@ input[type="checkbox"] {
   button {
     background-color: #f5f5f5;
   }
+
+  input + label {
+    background-color: #f5f5f5;
+  }
+
   input[type="checkbox"] {
     border-color: rgb(73, 73, 73);
   }

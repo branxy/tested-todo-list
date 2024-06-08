@@ -29,41 +29,48 @@ function TasksActions({ tasks, dispatch, tab, setTab }: TasksActionsProps) {
     if (currentTab !== newTab) setTab(newTab);
   }
 
-  const allTabStatus = tab === "all" && s.activeTab;
-  const activeTabStatus = tab === "active" && s.activeTab;
-  const completedTabStatus = tab === "completed" && s.activeTab;
-
   return (
     <div className={s.tasksActions}>
       <span>{itemsLeft}</span>
-      <div
-        className={s.taskTabs}
-        dir="ltr"
-        role="tablist"
-        aria-label="Switch tasks tabs by status"
-      >
-        <button
-          disabled={tab === "all"}
-          className={`secondary ${allTabStatus}`}
-          onClick={() => handleSwitchTabs(tab, "all")}
-        >
-          All
-        </button>
-        <button
-          disabled={tab === "active"}
-          className={`secondary ${activeTabStatus}`}
-          onClick={() => handleSwitchTabs(tab, "active")}
-        >
-          Active
-        </button>
-        <button
-          disabled={tab === "completed"}
-          className={`secondary ${completedTabStatus}`}
-          onClick={() => handleSwitchTabs(tab, "completed")}
-        >
-          Completed
-        </button>
-      </div>
+      <fieldset className={s.filterTasks}>
+        <legend className="screenreader">Filter tasks by status</legend>
+        <div className={s.filterBtn}>
+          <input
+            type="radio"
+            name="tasks-status"
+            id="filter-tasks-all"
+            value="all"
+            className="screenreader"
+            aria-checked={tab === "all"}
+            onChange={(e) => handleSwitchTabs(tab, e.target.value as Tabs)}
+          />
+          <label htmlFor="filter-tasks-all">All</label>
+        </div>
+        <div className={s.filterBtn}>
+          <input
+            type="radio"
+            name="tasks-status"
+            id="filter-tasks-active"
+            value="active"
+            className="screenreader"
+            aria-checked={tab === "active"}
+            onChange={(e) => handleSwitchTabs(tab, e.target.value as Tabs)}
+          />
+          <label htmlFor="filter-tasks-active">Active</label>
+        </div>
+        <div className={s.filterBtn}>
+          <input
+            type="radio"
+            name="tasks-status"
+            id="filter-tasks-completed"
+            value="completed"
+            className="screenreader"
+            aria-checked={tab === "completed"}
+            onChange={(e) => handleSwitchTabs(tab, e.target.value as Tabs)}
+          />
+          <label htmlFor="filter-tasks-completed">Completed</label>
+        </div>
+      </fieldset>
       <button
         className="primary"
         disabled={!completed.length}

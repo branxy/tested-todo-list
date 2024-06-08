@@ -17,6 +17,34 @@
   margin-top: 12px;
 }
 
+.filterTasks {
+  display: flex;
+  gap: 8px;
+}
+
+.filterBtn label {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em 0.7em 1.2em;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-family: inherit;
+}
+
+.filterBtn label:hover {
+  border-color: #646cff;
+}
+.filterBtn label:focus,
+.filterBtn label:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+.filterBtn label:disabled,
+.filterBtn label:disabled:hover {
+  border: none;
+  cursor: not-allowed;
+}
+
 .taskItem {
   display: flex;
   align-items: center;
@@ -47,7 +75,7 @@
   }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 580px) {
   .tasksActions {
     flex-direction: column;
     gap: 20px;
