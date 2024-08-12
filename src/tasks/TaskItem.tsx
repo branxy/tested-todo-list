@@ -19,6 +19,9 @@ function TaskItem({ task, dispatch }: TaskItemProps) {
           dispatch({ type: "tasks/taskStatusChanged", payload: task.id })
         }
       />
+      <label htmlFor="task-status" className="screenreader">
+        Task status
+      </label>
       <span>{task.done ? <s>{task.title}</s> : task.title}</span>
     </li>
   );
