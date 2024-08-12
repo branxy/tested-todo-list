@@ -22,14 +22,15 @@ function TaskApp() {
   return (
     <div className={s.taskApp}>
       <TaskInput dispatch={dispatch} />
-      {!hasTasks && <p>No tasks yet</p>}
-      {hasTasks && (
+      {hasTasks ? (
         <TasksActions
           tasks={filteredTasks}
           dispatch={dispatch}
           tab={tab}
           setTab={setTab}
         />
+      ) : (
+        <p>No tasks yet</p>
       )}
       <ul className={s.taskslist}>
         {filteredTasks.map((t, i) => (
