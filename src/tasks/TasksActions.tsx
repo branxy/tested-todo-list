@@ -37,7 +37,7 @@ function TasksActions({ tasks, dispatch, tab, setTab }: TasksActionsProps) {
         <div className={s.filterBtn}>
           <input
             type="radio"
-            name="tasks-status"
+            name="tasks-status-all"
             id="filter-tasks-all"
             value="all"
             className="screenreader"
@@ -49,7 +49,7 @@ function TasksActions({ tasks, dispatch, tab, setTab }: TasksActionsProps) {
         <div className={s.filterBtn}>
           <input
             type="radio"
-            name="tasks-status"
+            name="tasks-status-active"
             id="filter-tasks-active"
             value="active"
             className="screenreader"
@@ -61,7 +61,7 @@ function TasksActions({ tasks, dispatch, tab, setTab }: TasksActionsProps) {
         <div className={s.filterBtn}>
           <input
             type="radio"
-            name="tasks-status"
+            name="tasks-status-completed"
             id="filter-tasks-completed"
             value="completed"
             className="screenreader"
