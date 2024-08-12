@@ -1,7 +1,6 @@
-import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
-import TaskApp from "../src/tasks/TaskApp";
+import TaskApp from "../tasks/TaskApp";
 
 import { describe, expect, it } from "vitest";
 

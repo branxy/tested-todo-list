@@ -3,9 +3,9 @@ import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 
 import { describe, expect, it, vi } from "vitest";
-import TasksActions from "../src/tasks/TasksActions";
-import { Action, Tasks } from "../src/tasks/tasksReducer";
-import { Tabs } from "../src/tasks/TaskApp";
+import TasksActions from "../tasks/TasksActions";
+import { Action, Tasks } from "../tasks/tasksReducer";
+import { Tabs } from "../tasks/TaskApp";
 
 describe("Task actions: core functionality", () => {
   const exampleTasks: Tasks = [
