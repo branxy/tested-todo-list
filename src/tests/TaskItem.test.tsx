@@ -1,31 +1,32 @@
-import { fireEvent, render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
-import TaskApp from "../tasks/TaskApp";
+import { screen } from "@testing-library/react";
 
-import { describe, expect, it } from "vitest";
+import { renderTaskApp } from "./TaskApp.test";
+import userEvent from "@testing-library/user-event";
+import { addTask } from "./TaskInput.test";
 
 describe("Task Item component functionality", () => {
-  const renderTaskApp = () => {
-    render(<TaskApp />);
+  it(`should mark task as "done" when its checkbox is toggled`, async () => {
+    const user = userEvent.setup();
+    const { input } = renderTaskApp();
 
-    return {
-      form: screen.getByRole("form"),
-      input: screen.getByPlaceholderText("New task name"),
-    };
-  };
-  it(`should mark task as "done" when its checkbox is toggled`, () => {
-    const { form, input } = renderTaskApp();
-    fireEvent.change(input, { target: { value: "New Task" } });
-    fireEvent.submit(form);
+    await addTask(user, input);
 
-    const checkbox = screen.getByRole("checkbox");
-    fireEvent.click(checkbox);
+    const checkbox = screen.getByRole("checkbox", {
+      name: /task status/i,
+    });
+    await user.click(checkbox);
+    expect(checkbox).toBeChecked();
 
     // navigate to "completed" tab
-    const completedTasksTab = screen.getByText("Completed");
-    fireEvent.click(completedTasksTab);
+    const completedTasksTab = screen.getByRole("radio", { name: "Completed" });
+    await user.click(completedTasksTab);
 
-    const checkedCheckbox = screen.getByRole("checkbox");
+    const checkedCheckbox = screen.getByRole("checkbox", {
+      name: /task status/i,
+      checked: true,
+    });
+
     expect(checkedCheckbox).toBeInTheDocument();
   });
 });

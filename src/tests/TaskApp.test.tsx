@@ -1,26 +1,22 @@
 import TaskApp from "../tasks/TaskApp";
+import { addTask } from "./TaskInput.test";
 
 import "@testing-library/jest-dom/vitest";
-import userEvent, { UserEvent } from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 import { render, screen } from "@testing-library/react";
 
-const addTask = async (user: UserEvent, input: HTMLInputElement) => {
-  await user.type(input, "Test task", { skipClick: true });
-  await user.keyboard("{Enter}");
+export const renderTaskApp = () => {
+  render(<TaskApp />);
+
+  return {
+    form: screen.getByRole("form"),
+    input: screen.getByRole<HTMLInputElement>("textbox", {
+      name: /new task name:/i,
+    }),
+  };
 };
 
 describe("TaskInput integration", () => {
-  const renderTaskApp = () => {
-    render(<TaskApp />);
-
-    return {
-      form: screen.getByRole("form"),
-      input: screen.getByRole<HTMLInputElement>("textbox", {
-        name: /new task name:/i,
-      }),
-    };
-  };
-
   it("should add a new task with unchecked checkbox to the tasks list on key Enter press", async () => {
     const user = userEvent.setup();
 

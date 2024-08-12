@@ -17,7 +17,7 @@ const renderTaskInput = () => {
   };
 };
 
-const addTask = async (user: UserEvent, input: HTMLInputElement) => {
+export const addTask = async (user: UserEvent, input: HTMLInputElement) => {
   await user.type(input, "Test task", { skipClick: true });
   await user.keyboard("{Enter}");
 };
