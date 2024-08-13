@@ -16,7 +16,6 @@ function TaskApp() {
   const [tab, setTab] = useState<Tabs>("all");
 
   const hasTasks = Boolean(tasks.length);
-
   const filteredTasks = useMemo(() => filterTasks(tasks, tab), [tasks, tab]);
 
   return (
@@ -34,7 +33,7 @@ function TaskApp() {
       )}
       <ul className={s.taskslist}>
         {filteredTasks.map((t, i) => (
-          <TaskItem key={i} task={t} dispatch={dispatch} />
+          <TaskItem key={i + t.id} task={t} dispatch={dispatch} />
         ))}
       </ul>
     </div>

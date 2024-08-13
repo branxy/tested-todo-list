@@ -38,7 +38,7 @@ const renderTaskActions = (tasks: Tasks, tab: Tabs) => {
   };
 };
 
-describe("Tasks left widget", () => {
+describe("Tasks count", () => {
   it(`All tasks tab: should display a count of uncompleted tasks`, () => {
     const { tasksCount } = renderTaskActions(exampleTasks, "all");
 
