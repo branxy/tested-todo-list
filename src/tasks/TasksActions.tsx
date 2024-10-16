@@ -41,7 +41,7 @@ function TasksActions({ tasks, dispatch, tab, setTab }: TasksActionsProps) {
             id="filter-tasks-all"
             value="all"
             className="screenreader"
-            aria-checked={tab === "all"}
+            checked={tab === "all"}
             onChange={(e) => handleSwitchTabs(tab, e.target.value as Tabs)}
           />
           <label htmlFor="filter-tasks-all">All</label>
@@ -53,7 +53,7 @@ function TasksActions({ tasks, dispatch, tab, setTab }: TasksActionsProps) {
             id="filter-tasks-active"
             value="active"
             className="screenreader"
-            aria-checked={tab === "active"}
+            checked={tab === "active"}
             onChange={(e) => handleSwitchTabs(tab, e.target.value as Tabs)}
           />
           <label htmlFor="filter-tasks-active">Active</label>
@@ -65,7 +65,7 @@ function TasksActions({ tasks, dispatch, tab, setTab }: TasksActionsProps) {
             id="filter-tasks-completed"
             value="completed"
             className="screenreader"
-            aria-checked={tab === "completed"}
+            checked={tab === "completed"}
             onChange={(e) => handleSwitchTabs(tab, e.target.value as Tabs)}
           />
           <label htmlFor="filter-tasks-completed">Completed</label>
